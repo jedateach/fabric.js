@@ -27,8 +27,8 @@ module.exports = function (srcDir, libDir) {
   return [
     file('HEADER.js'),
 
-    file(libDir + 'json2.js', 'serialization', 'json', true),
-    file(libDir + 'event.js', 'gestures', null, true),
+    file('json2.js', 'serialization', 'json', true),
+    file('event.js', 'gestures', null, true),
 
     file('mixins/observable.mixin.js'),
     file('mixins/collection.mixin.js'),
