@@ -1,3 +1,5 @@
+console.log('cairo version: ', require('canvas').cairoVersion);
+
 var testrunner = require('qunit');
 
 testrunner.options.log.summary = true;
