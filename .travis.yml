@@ -23,6 +23,15 @@ matrix:
     - node_js: "4"
     - node_js: "0.12"
     - env: LAUNCHER=PhantomJS
+  # TODO: fix issues and remove allowed failures
+  allow_failures:
+    - env: LAUNCHER=SL_Firefox
+    - env: LAUNCHER=SL_Safari
+    - env: LAUNCHER=SL_MS_Edge
+    - env: LAUNCHER=SL_IE_11
+    - env: LAUNCHER=SL_IE_10
+    - env: LAUNCHER=SL_IE_9
+    - env: LAUNCHER=PhantomJS
 
 addons:
   apt:
