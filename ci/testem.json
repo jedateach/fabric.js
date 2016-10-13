@@ -28,7 +28,7 @@
     },
     "SL_Safari": {
       "exe": "node_modules/.bin/saucie",
-      "args": ["-b", "safari", "-v", "latest", "--no-ct", "--at", "-u"],
+      "args": ["-b", "safari", "-v", "9", "--no-ct", "--at", "-u"],
       "protocol": "browser"
     },
     "SL_MS_Edge": {
