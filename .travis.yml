@@ -1,12 +1,14 @@
 language: node_js
 node_js:
   - "6"
+
 env:
   global:
     - LAUNCHER=Node
     - CXX=g++-4.8
     - SAUCE_USERNAME=jedateach
     - SAUCE_ACCESS_KEY=8c029563-0a71-469c-bfc7-135395b0b1d8
+
 matrix:
   include:
     - env: LAUNCHER=SL_Chrome
@@ -30,6 +32,7 @@ matrix:
     - env: LAUNCHER=SL_IE_10
     - env: LAUNCHER=SL_IE_9
     - env: LAUNCHER=PhantomJS
+
 addons:
   apt:
     sources:
