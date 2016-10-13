@@ -30,7 +30,6 @@ matrix:
     - env: LAUNCHER=SL_IE_10
     - env: LAUNCHER=SL_IE_9
     - env: LAUNCHER=PhantomJS
-
 addons:
   apt:
     sources:
