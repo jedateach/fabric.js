@@ -7,7 +7,6 @@ env:
     - CXX=g++-4.8
     - SAUCE_USERNAME=jedateach
     - SAUCE_ACCESS_KEY=8c029563-0a71-469c-bfc7-135395b0b1d8
-
 matrix:
   include:
     - env: LAUNCHER=SL_Chrome
