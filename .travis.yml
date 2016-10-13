@@ -35,4 +35,4 @@ before_install:
   - if [ "$LAUNCHER" == "Node" ]; then sudo apt-get update -qq; fi
   - if [ "$LAUNCHER" == "Node" ]; then sudo apt-get install -qq libgif-dev libpng-dev libjpeg8-dev libpango1.0-dev libcairo2-dev; fi
 
-script: 'npm run lint && npm run lint_tests && npm run build && testem ci --port 8080 -f ci/testem.ci.json -l $LAUNCHER'
+script: 'npm run lint && npm run lint_tests && npm run build && testem ci --port 8080 -f ci/testem.json -l $LAUNCHER'
