@@ -10,15 +10,23 @@ matrix:
   include:
     - env: LAUNCHER=Firefox
     - env: LAUNCHER=Chrome
+    - env: LINT_ONLY=true
     - node_js: "9"
     - node_js: "8"
     - node_js: "6"
     - node_js: "4"
 
-script: 'npm run lint && npm run lint_tests && npm run build && testem ci --port 8080 -f testem.json -l $LAUNCHER'
+script:
+  - if [ "$LINT_ONLY" == "true" ]; then npm run lint && npm run lint_tests; fi
+  - if [ "$LINT_ONLY" != "true" ]; then npm run build && testem ci --port 8080 -f testem.json -l $LAUNCHER; fi
+
+install:
+  - if [ "$LINT_ONLY" == "true" ]; then npm install eslint@4.7.x; fi
+  - if [ "$LAUNCHER" != "Node" ]; then npm install --no-optional; fi
+  - if [ "$LINT_ONLY" != "true" ] && [ "$LAUNCHER" == "Node" ]; then npm install .; fi
 
 before_install:
-  - if [ "$LAUNCHER" == "Node" ]; then sudo apt-get update -qq; fi
-  - if [ "$LAUNCHER" == "Node" ]; then sudo apt-get install -qq libgif-dev libpng-dev libjpeg8-dev libpango1.0-dev libcairo2-dev; fi
+  - if [ "$LAUNCHER" == "Node" ] && [ "$LINT_ONLY" != "true" ]; then sudo apt-get update -qq; fi
+  - if [ "$LAUNCHER" == "Node" ] && [ "$LINT_ONLY" != "true" ]; then sudo apt-get install -qq libgif-dev libpng-dev libjpeg8-dev libpango1.0-dev libcairo2-dev; fi
 
 dist: trusty
