@@ -3,8 +3,8 @@ node_js:
   - "6"
 
 stages:
-  - lint_build
   - test
+  # - release
 
 cache:
   directories:
@@ -14,20 +14,25 @@ env:
   global:
     - LAUNCHER=Node
 
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libgif-dev libpng-dev libjpeg8-dev libpango1.0-dev libcairo2-dev
+
+install: npm install
+
+script: 'testem ci --port 8080 -f testem.json -l $LAUNCHER'
+
 jobs:
   include:
-    - stage: lint_build
+    - stage: test
       before_install: skip
-      # install: npm install uglify-js@3.1.x eslint@4.7.x
-      script: 'npm run lint && npm run lint_tests && npm run build'
+      script: 'npm run lint && npm run lint_tests'
     - stage: test
       env: LAUNCHER=Chrome
       before_install: skip
-      # install: npm install testem@1.18.4 qunit@2.4.1
     - stage: test
       env: LAUNCHER=Firefox
       before_install: skip
-      # install: npm install testem@1.18.4 qunit@2.4.1
     - stage: test
       node_js: "9"
     - stage: test
@@ -36,11 +41,5 @@ jobs:
       node_js: "6"
     - stage: test
       node_js: "4"
-
-script: 'npm run build:fast && testem ci --port 8080 -f testem.json -l $LAUNCHER'
-
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq libgif-dev libpng-dev libjpeg8-dev libpango1.0-dev libcairo2-dev
 
 dist: trusty
