@@ -3,8 +3,8 @@ node_js:
   - "6"
 
 stages:
+  - lint
   - test
-  # - release
 
 cache:
   directories:
@@ -18,13 +18,11 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libgif-dev libpng-dev libjpeg8-dev libpango1.0-dev libcairo2-dev
 
-install: npm install
-
 script: 'testem ci --port 8080 -f testem.json -l $LAUNCHER'
 
 jobs:
   include:
-    - stage: test
+    - stage: lint
       before_install: skip
       script: 'npm run lint && npm run lint_tests'
     - stage: test
